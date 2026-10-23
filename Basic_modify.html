@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SKALA 관리자 | 과목관리 수정</title>
+  <link rel="stylesheet" href="css/reset.css"><link rel="stylesheet" href="css/style.css"><script src="js/common.js" defer></script><script src="js/include.js" defer></script><script src="js/write.js" defer></script>
+</head>
+<body data-gnb="교육관리" data-lnb-menu="교육관리" data-lnb="과목관리">
+<div class="admin-page">
+  <!-- GNB 영역 (include/header.html) -->
+  <div data-include="include/header.html"></div>
+  <!-- LNB 슬라이드 영역 (include/sidebar.html) -->
+  <div data-include="include/sidebar.html"></div>
+  <!-- 컨텐츠 영역 -->
+  <main class="content">
+    <div class="page-title"><h1>과목관리 수정</h1><button type="button" class="bookmark-toggle" aria-label="즐겨찾기 추가"><img src="images/icons/star-title.svg" alt=""></button></div>
+    <section class="write-panel">
+      <div class="table-wrap write-table">
+        <table>
+          <caption class="sr-only">과목관리 수정</caption>
+          <colgroup><col style="width:160px"><col></colgroup>
+          <tbody>
+          <tr class="row-r"><th scope="row">과목분류 <span class="req">*</span></th><td><select class="ctl is-selected" id="courseCategory"><option>분류01</option></select></td></tr>
+          <tr class="row-r"><th scope="row">과목명 <span class="req">*</span></th><td><input class="ctl" id="courseName" type="text" placeholder="과목명을 입력해주세요." value="스마트 데이터 이해 및 활용"></td></tr>
+          <tr class="row-r"><th scope="row">교육일수 <span class="req">*</span></th><td><input class="ctl" id="eduDays" type="text" inputmode="numeric" placeholder="교육일을 입력해주세요." value="3"></td></tr>
+          <tr class="row-r"><th scope="row">1일 교육시간 <span class="req">*</span></th><td><input class="ctl" id="dayHours" type="text" inputmode="numeric" placeholder="1일 교육시간을 입력해주세요." value="8"></td></tr>
+          <tr class="row-r"><th scope="row">총 교육시간 <span class="req">*</span></th><td><input class="ctl" id="totalHours" type="text" disabled placeholder="교육일수 X 1일 교육시간으로 자동 계산됩니다." value="24"></td></tr>
+          <tr class="row-r"><th scope="row">교수법</th><td><select class="ctl is-selected" id="method"><option>강의</option></select></td></tr>
+          <tr class="row-r"><th scope="row">만족도 설문</th><td><div class="survey-field"><button type="button" class="btn-survey"><img src="images/icons/search.svg" alt="">설문 검색</button><span class="badge"><span>만족도 설문 03</span><button type="button" class="badge__remove" aria-label="만족도 설문 03 삭제"><img src="images/icons/badge-close.svg" alt=""></button></span></div></td></tr>
+          <tr class="row-tall"><th scope="row">과목내용</th><td><div class="textarea-box"><textarea id="courseDesc" maxlength="300" placeholder="과목내용을 입력해주세요.">스마트 데이터 이해 및 활용 과목에 대한 설명입니다.</textarea><p class="counter"><span id="descCount">0</span><i>/</i><span>300</span></p></div></td></tr>
+          <tr class="row-file1"><th scope="row">강의교안</th><td><div class="file-box" data-max="3">
+            <input class="file-input" type="file" multiple hidden>
+            <div class="file-tools "><button type="button" class="btn-sm btn-sm--blue" data-file-add><img src="images/icons/icon-plus.svg" alt="">파일 추가</button><button type="button" class="btn-sm btn-sm--gray" data-file-remove><img src="images/icons/icon-trash.svg" alt="">항목 제거</button><button type="button" class="btn-sm btn-sm--gray" data-file-clear>전체항목제거</button></div>
+            <div class="file-head"><label class="chk"><input type="checkbox" data-file-all aria-label="전체 선택"></label><span class="file-name">파일명</span><span class="file-size">파일 크기</span></div>
+            <div class="file-list"></div>
+            <div class="file-drop" tabindex="0"><p>이곳을 <em>더블클릭</em>하거나 파일을 <em>드래그 &amp; 드롭</em>하세요.</p></div>
+            <div class="file-note"><span>최대 <em>3개 100 MB</em> 제한 (※ 파일 첨부는 최대 3개까지 가능합니다.)</span></div>
+          </div></td></tr>
+          <tr class="row-file2"><th scope="row">강의자료</th><td><div class="file-box" data-max="3">
+            <input class="file-input" type="file" multiple hidden>
+            <div class="file-tools is-short"><button type="button" class="btn-sm btn-sm--blue" data-file-add><img src="images/icons/icon-plus.svg" alt="">파일 추가</button><button type="button" class="btn-sm btn-sm--gray" data-file-remove><img src="images/icons/icon-trash.svg" alt="">항목 제거</button><button type="button" class="btn-sm btn-sm--gray" data-file-clear>전체항목제거</button></div>
+            <div class="file-head"><label class="chk"><input type="checkbox" data-file-all aria-label="전체 선택"></label><span class="file-name">파일명</span><span class="file-size">파일 크기</span></div>
+            <div class="file-list"></div>
+            <div class="file-drop" tabindex="0"><p>이곳을 <em>더블클릭</em>하거나 파일을 <em>드래그 &amp; 드롭</em>하세요.</p></div>
+            <div class="file-note"><span>최대 <em>3개 100 MB</em> 제한 (※ 파일 첨부는 최대 3개까지 가능합니다.)</span></div>
+          </div></td></tr>
+          <tr class="row-r"><th scope="row">사용여부</th><td><div class="radio-group" role="radiogroup" aria-label="사용여부"><label class="is-checked"><input type="radio" name="useYn" value="Y" checked>Y</label><label><input type="radio" name="useYn" value="N">N</label></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="write-actions"><button type="button" class="btn btn--gray">취소</button><button type="button" class="btn btn--primary">저장</button></div>
+    </section>
+  </main>
+</div>
+<!-- 전체메뉴 레이어팝업 영역 (include/all-menu.html) -->
+<div data-include="include/all-menu.html"></div>
+</body></html>

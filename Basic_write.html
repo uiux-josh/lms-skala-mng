@@ -3,205 +3,15 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SKALA 관리자 | 과목관리 등록</title>
-  <link rel="stylesheet" href="css/reset.css"><link rel="stylesheet" href="css/style.css"><script src="js/common.js" defer></script><script src="js/write.js" defer></script>
+  <link rel="stylesheet" href="css/reset.css"><link rel="stylesheet" href="css/style.css"><script src="js/common.js" defer></script><script src="js/include.js" defer></script><script src="js/write.js" defer></script>
 </head>
-<body>
+<body data-gnb="교육관리" data-lnb-menu="교육관리" data-lnb="과목관리">
 <div class="admin-page">
-  <header class="top-header">
-    <div class="top-header__logo"><img src="images/logo.png" alt="SK 주식회사 AX"></div>
-    <nav class="lnb" aria-label="상단 메뉴">
-      <div class="lnb-item">
-        <a href="#" class="lnb-link">시스템관리</a>
-        <ul class="lnb-dropdown">
-          <li><a href="#">역할 관리<img src="images/icons/chevron-right.svg" alt=""></a></li>
-          <li><a href="#">프로그램 관리</a></li>
-          <li><a href="#">사이트 관리</a></li>
-          <li><a href="#">메뉴 관리</a></li>
-          <li><a href="#">메뉴 권한 설정</a></li>
-          <li><a href="#">관리자 접근 이력</a></li>
-          <li><a href="#">운영메시지 관리</a></li>
-          <li><a href="#">운영메시지 그룹 관리</a></li>
-          <li><a href="#">코드 관리</a></li>
-          <li><a href="#">메모리DB 관리</a></li>
-        </ul>
-      </div>
-      <div class="lnb-item">
-        <a href="#" class="lnb-link">통합관리</a>
-        <ul class="lnb-dropdown">
-          <li><a href="#">사용자 관리</a></li>
-          <li><a href="#">개인정보 열람 기록</a></li>
-          <li><a href="#">엑셀 다운로드 사유</a></li>
-          <li><a href="#">첨부파일 다운로드 사유</a></li>
-          <li><a href="#">배너 관리</a></li>
-          <li><a href="#">게시판 관리</a></li>
-          <li><a href="#">게시물 관리</a></li>
-          <li><a href="#">저작 콘텐츠 관리</a></li>
-          <li><a href="#">공지사항 관리</a></li>
-          <li><a href="#">강사 공지사항 관리</a></li>
-          <li><a href="#">팝업 공지사항<img src="images/icons/chevron-right.svg" alt=""></a></li>
-          <li><a href="#">FAQ 관리<img src="images/icons/chevron-right.svg" alt=""></a></li>
-          <li><a href="#">답변 관리</a></li>
-        </ul>
-      </div>
-      <div class="lnb-item">
-        <a href="#" class="lnb-link is-active">교육관리</a>
-        <ul class="lnb-dropdown">
-          <li><a href="#">캠퍼스 관리</a></li>
-          <li><a href="#">기수 관리</a></li>
-          <li><a href="#">과목 관리</a></li>
-          <li><a href="#">강의실 관리</a></li>
-          <li><a href="#">교육 과정 관리</a></li>
-          <li><a href="#">성취도평가 관리</a></li>
-          <li><a href="#">프로젝트 관리</a></li>
-          <li><a href="#">역량 진단</a></li>
-          <li><a href="#">교육 일정 관리</a></li>
-          <li><a href="#">강사 배정(분반) 관리</a></li>
-          <li><a href="#">출결 관리</a></li>
-          <li><a href="#">공가 신청 관리</a></li>
-          <li><a href="#">장학금 신청 관리</a></li>
-          <li><a href="#">증명서류 관리</a></li>
-          <li><a href="#">설문관리<img src="images/icons/chevron-right.svg" alt=""></a></li>
-        </ul>
-      </div>
-      <div class="lnb-item">
-        <a href="#" class="lnb-link">교육운영관리</a>
-        <ul class="lnb-dropdown">
-          <li><a href="#">강의 일정 관리</a></li>
-          <li><a href="#">강의 교안/자료 관리</a></li>
-          <li><a href="#">성취도 평가 관리<img src="images/icons/chevron-right.svg" alt=""></a></li>
-          <li><a href="#">프로젝트 채점</a></li>
-          <li><a href="#">강사별 채점 현황</a></li>
-          <li><a href="#">교육현황</a></li>
-          <li><a href="#">과정게시판 관리</a></li>
-          <li><a href="#">성적 관리</a></li>
-          <li><a href="#">설문결과 관리</a></li>
-          <li><a href="#">메일/SMS 발송 관리</a></li>
-        </ul>
-      </div>
-      <div class="lnb-item">
-        <a href="#" class="lnb-link">역량진단</a>
-        <ul class="lnb-dropdown">
-          <li><a href="#">역량 관리</a></li>
-          <li><a href="#">요구 수준 관리</a></li>
-          <li><a href="#">진단 결과 관리</a></li>
-          <li><a href="#">매핑 과정 관리</a></li>
-          <li><a href="#">진단지 관리</a></li>
-          <li><a href="#">진단관리</a></li>
-          <li><a href="#">진단 결과 관리</a></li>
-        </ul>
-      </div>
-      <div class="lnb-item">
-        <a href="#" class="lnb-link">교강사관리</a>
-        <ul class="lnb-dropdown">
-          <li><a href="#">교강사 관리</a></li>
-          <li><a href="#">미평가 현황</a></li>
-          <li><a href="#">감사게시판<img src="images/icons/chevron-right.svg" alt=""></a></li>
-          <li><a href="#">교강사 이력 관리</a></li>
-        </ul>
-      </div>
-      <div class="lnb-item">
-        <a href="#" class="lnb-link">통계관리</a>
-        <ul class="lnb-dropdown">
-          <li><a href="#">거점별 운영 현황</a></li>
-          <li><a href="#">출결 현황 통계</a></li>
-          <li><a href="#">성취도 평가 근황</a></li>
-          <li><a href="#">프로젝트 현황</a></li>
-          <li><a href="#">수료 현황</a></li>
-          <li><a href="#">교육 결과 보고서</a></li>
-          <li><a href="#">교육생 위험군 모니터링</a></li>
-        </ul>
-      </div>
-    </nav>
-    <div class="account"><button type="button" aria-label="전체 서비스" class="icon-button"><img src="images/icons/grip.svg" alt=""></button><span><strong>홍길동</strong> 님</span><select aria-label="역할"><option>시스템관리자</option></select><button type="button" class="logout"><img src="images/icons/logout.svg" alt="">로그아웃</button></div>
-  </header>
-  <aside class="sidebar">
-    <div class="sidebar-tabs" role="tablist"><button class="is-active" type="button" role="tab" aria-selected="true" aria-controls="menu-panel" data-sidebar-tab="menu"><img src="images/icons/menu.svg" alt="">메뉴</button><button type="button" role="tab" aria-selected="false" aria-controls="bookmark-panel" data-sidebar-tab="bookmark"><img src="images/icons/star-outline.svg" alt="">즐겨찾기</button></div>
-    <nav class="side-nav" id="menu-panel" aria-label="좌측 메뉴" data-sidebar-panel="menu">
-      <p>이러닝 · 교육관리</p>
-      <div class="side-group">
-        <a href="#" class="side-parent" aria-expanded="false"><img src="images/icons/home.svg" alt="">메인<img class="arrow" src="images/icons/side-menu-down.svg" alt=""></a>
-        <div class="side-sub"><ul>
-          <li><a href="#">대시보드</a></li>
-        </ul></div>
-      </div>
-      <div class="side-group">
-        <a href="#" class="side-parent" aria-expanded="false"><img src="images/icons/settings.svg" alt="">시스템관리<img class="arrow" src="images/icons/side-menu-down.svg" alt=""></a>
-      </div>
-      <div class="side-group">
-        <a href="#" class="side-parent" aria-expanded="false"><img src="images/icons/integration.svg" alt="">통합관리<img class="arrow" src="images/icons/side-menu-down.svg" alt=""></a>
-        <div class="side-sub"><ul>
-          <li><a href="#">훈련생관리</a></li>
-          <li><a href="#">운영자관리</a></li>
-          <li><a href="#">개인정보열람기록</a></li>
-          <li><a href="#">엑셀 다운로드 사유</a></li>
-          <li><a href="#">첨부파일 다운로드 사유</a></li>
-          <li><a href="#">배너관리</a></li>
-          <li><a href="#">게시판관리</a></li>
-          <li><a href="#">게시물관리</a></li>
-          <li><a href="#">저작콘텐츠관리</a></li>
-          <li><a href="#">공지사항 관리</a></li>
-          <li><a href="#">강사공지사항 관리</a></li>
-          <li><a href="#">팝업 공지사항</a></li>
-          <li><a href="#">FAQ 관리</a></li>
-          <li><a href="#">답변관리</a></li>
-        </ul></div>
-      </div>
-      <div class="side-group is-open">
-        <a href="#" class="side-parent" aria-expanded="true"><img src="images/icons/education.svg" alt="">교육관리<img class="arrow" src="images/icons/side-menu-down.svg" alt=""></a>
-        <div class="side-sub"><ul>
-          <li><a href="#">캠퍼스관리</a></li>
-          <li><a href="#">기수 관리</a></li>
-          <li><a href="#" class="is-active">과목관리</a></li>
-          <li><a href="#">강의실관리</a></li>
-          <li><a href="#">교육과정관리</a></li>
-          <li><a href="#">성취도평가관리</a></li>
-          <li><a href="#">프로젝트관리</a></li>
-          <li><a href="#">기준관리</a></li>
-          <li><a href="#">교육일정관리</a></li>
-          <li><a href="#">강사배정관리</a></li>
-          <li><a href="#">출결관리</a></li>
-          <li><a href="#">공가신청관리</a></li>
-          <li><a href="#">장학금신청관리</a></li>
-          <li><a href="#">증명서류관리</a></li>
-          <li><a href="#">설문관리</a></li>
-        </ul></div>
-      </div>
-      <div class="side-group">
-        <a href="#" class="side-parent" aria-expanded="false"><img src="images/icons/operation.svg" alt="">교육운영관리<img class="arrow" src="images/icons/side-menu-down.svg" alt=""></a>
-      </div>
-      <div class="side-group">
-        <a href="#" class="side-parent" aria-expanded="false"><img src="images/icons/competency.svg" alt="">역량진단<img class="arrow" src="images/icons/side-menu-down.svg" alt=""></a>
-        <div class="side-sub"><ul>
-          <li><a href="#">역량관리</a></li>
-          <li><a href="#">요구수준관리</a></li>
-          <li><a href="#">진단결과관리</a></li>
-          <li><a href="#">매핑과정관리</a></li>
-          <li><a href="#">진단지관리</a></li>
-          <li><a href="#">진단관리</a></li>
-          <li><a href="#">진단결과관리</a></li>
-        </ul></div>
-      </div>
-      <div class="side-group">
-        <a href="#" class="side-parent" aria-expanded="false"><img src="images/icons/instructor.svg" alt="">교강사관리<img class="arrow" src="images/icons/side-menu-down.svg" alt=""></a>
-        <div class="side-sub"><ul>
-          <li><a href="#">교강사관리</a></li>
-          <li><a href="#">미평가현황</a></li>
-          <li><a href="#">강사게시판</a></li>
-          <li><a href="#">강사 공지사항</a></li>
-          <li><a href="#">강사 문의게시판</a></li>
-          <li><a href="#">교강사이력관리</a></li>
-        </ul></div>
-      </div>
-      <div class="side-group">
-        <a href="#" class="side-parent" aria-expanded="false"><img src="images/icons/statistics.svg" alt="">통계관리<img class="arrow" src="images/icons/side-menu-down.svg" alt=""></a>
-      </div>
-    </nav>
-    <nav class="bookmark-nav" id="bookmark-panel" aria-label="즐겨찾기 메뉴" data-sidebar-panel="bookmark" hidden>
-      <a href="#"><img class="bookmark-remove" src="images/icons/close.svg" alt="즐겨찾기 삭제" title="삭제"><span>강의실 관리</span><img class="arrow" src="images/icons/side-menu-arrow.svg" alt="순서 변경" title="드래그하여 순서 변경"></a>
-      <a href="#"><img class="bookmark-remove" src="images/icons/close.svg" alt="즐겨찾기 삭제" title="삭제"><span>과목관리</span><img class="arrow" src="images/icons/side-menu-arrow.svg" alt="순서 변경" title="드래그하여 순서 변경"></a>
-      <a href="#"><img class="bookmark-remove" src="images/icons/close.svg" alt="즐겨찾기 삭제" title="삭제"><span>교육일정관리</span><img class="arrow" src="images/icons/side-menu-arrow.svg" alt="순서 변경" title="드래그하여 순서 변경"></a>
-    </nav><button type="button" class="sidebar-rail" aria-label="메뉴 닫기" aria-expanded="true"><img src="images/icons/rail-close.svg" alt=""><span>메<br>뉴<br>닫<br>기</span></button>
-  </aside>
+  <!-- GNB 영역 (include/header.html) -->
+  <div data-include="include/header.html"></div>
+  <!-- LNB 슬라이드 영역 (include/sidebar.html) -->
+  <div data-include="include/sidebar.html"></div>
+  <!-- 컨텐츠 영역 -->
   <main class="content">
     <div class="page-title"><h1>과목관리 등록</h1><button type="button" class="bookmark-toggle" aria-label="즐겨찾기 추가"><img src="images/icons/star-title.svg" alt=""></button></div>
     <section class="write-panel">
@@ -242,4 +52,6 @@
     </section>
   </main>
 </div>
+<!-- 전체메뉴 레이어팝업 영역 (include/all-menu.html) -->
+<div data-include="include/all-menu.html"></div>
 </body></html>

@@ -21,7 +21,11 @@ document.addEventListener('DOMContentLoaded',()=>{
   /* 과목내용 글자수 */
   const desc=document.getElementById('courseDesc');
   const count=document.getElementById('descCount');
-  desc?.addEventListener('input',()=>{count.textContent=String(desc.value.length)});
+  const updateCount=()=>{count.textContent=String(desc.value.length)};
+  if(desc&&count){updateCount();desc.addEventListener('input',updateCount)}
+
+  /* 선택된 만족도 설문 뱃지 삭제 */
+  document.querySelectorAll('.badge__remove').forEach(button=>button.addEventListener('click',()=>button.closest('.badge').remove()));
 
   /* 사용여부 라디오 */
   document.querySelectorAll('.radio-group').forEach(group=>{
