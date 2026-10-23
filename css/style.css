@@ -207,7 +207,7 @@ select.ctl { padding-right:32px; color:#999; background:#fff url("../images/icon
 .write-actions { display:flex; justify-content:flex-end; gap:8px; height:34px; }
 .write-actions .btn { min-width:80px; }
 
-.write-table tbody tr:hover td { background:#fff; }
+.write-table tbody tr:hover td, .info-table tbody tr:hover td { background:#fff; }
 
 /* ===== 전체메뉴 레이어팝업 ===== */
 .all-menu { position:fixed; z-index:100; inset:0; background:rgba(0,0,0,.4); opacity:0; visibility:hidden; transition:opacity .2s ease,visibility 0s linear .2s; }
