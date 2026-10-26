@@ -293,7 +293,6 @@ select.ctl.is-selected { color:var(--gray-900); }
 .tag { display:inline-flex; align-items:center; justify-content:center; height:24px; padding:0 12px; border-radius:6px; font-size:13px; font-weight:500; line-height:16px; }
 .tag--off { color:var(--gray-900); background:#f2f2f2; }
 .tag--on { color:#33870b; background:#edfde5; }
-.table--detail { min-width:1545px; }
 .table--detail thead th { height:30px; }
 .table--detail td .chk, .table--detail th .chk { display:flex; justify-content:center; }
 .table--detail td.t-red { color:#f04a3b; }
@@ -302,3 +301,12 @@ select.ctl.is-selected { color:var(--gray-900); }
 .sel26 { display:block; width:100%; height:26px; padding:0 32px 0 8px; border:1px solid #ccc; border-radius:4px; color:var(--gray-900); background:#fff url("../images/icons/chevron-down.svg") no-repeat right 7px center/24px 24px; outline:none; font-size:12px; font-weight:400; appearance:none; }
 .sel26:focus { border-color:var(--blue); }
 .chk input:disabled { border-color:#ccc; background:#f2f2f2; cursor:default; }
+
+/* 교육일정 표: 체크박스~과목/특강은 고정, 강사(1~5반)만 가로 스크롤 */
+.split-table { display:flex; align-items:flex-start; width:100%; }
+.split-table__fixed { flex:0 0 885px; }
+.split-table__scroll { flex:1 1 auto; min-width:0; }
+.table--fixed th:last-child, .table--fixed td:last-child { border-right:1px solid #ddd; }
+.table--fixed thead th { height:60px; }
+.table--teachers { min-width:600px; }
+.split-table:has(.table-scroll.is-scroll) .table--fixed tbody tr:last-child td { border-bottom:1px solid #ddd; }
