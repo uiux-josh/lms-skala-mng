@@ -54,50 +54,87 @@ document.querySelectorAll('.radio-group').forEach(group=>{
   });
 });
 
-/* 즐겨찾기: X 클릭 삭제, 위아래 화살표 드래그로 순서 변경 */
+/* 즐겨찾기: X 클릭 삭제, 위아래 화살표를 누른 채 드래그하면 항목이 마우스를 따라 움직이며 순서 변경 */
 const bookmarkNav=document.querySelector('.bookmark-nav');
 if(bookmarkNav){
+  const SETTLE='transform .2s ease';
   let drag=null,justDragged=false;
+  const listItems=()=>[...bookmarkNav.querySelectorAll('a')];
   // 캡처 단계에서 처리해 기존 메뉴 활성화 클릭 핸들러보다 먼저 막는다
   bookmarkNav.addEventListener('click',event=>{
     if(justDragged){event.preventDefault();event.stopPropagation();justDragged=false;return}
     const remove=event.target.closest('.bookmark-remove');
     if(remove){event.preventDefault();event.stopPropagation();remove.closest('a').remove()}
   },true);
+  // 브라우저 기본 이미지/링크 끌기가 시작되면 드래그가 중단되므로 막는다
+  bookmarkNav.addEventListener('dragstart',event=>event.preventDefault());
+
+  const onMove=event=>{
+    if(!drag||event.pointerId!==drag.pointerId)return;
+    drag.moved=true;
+    const {item}=drag;
+    // 항목이 마우스를 따라가되, 목록 영역 안에서만 움직인다
+    const minTop=drag.listTop,maxTop=drag.listTop+(drag.count-1)*drag.height;
+    const top=Math.min(maxTop,Math.max(minTop,drag.startTop+event.clientY-drag.startY));
+    const items=listItems();
+    const target=Math.round((top-drag.listTop)/drag.height);
+    if(target!==items.indexOf(item)){
+      // 다른 항목들은 원래 보이던 위치에서 새 자리로 부드럽게 이동한다 (FLIP)
+      const others=items.filter(x=>x!==item);
+      const before=new Map(others.map(x=>[x,x.getBoundingClientRect().top]));
+      bookmarkNav.insertBefore(item,others[target]||null);
+      others.forEach(x=>{
+        x.style.transition='none';
+        x.style.transform='';
+        const diff=before.get(x)-x.getBoundingClientRect().top;
+        if(!diff)return;
+        x.style.transform='translateY('+diff+'px)';
+        x.getBoundingClientRect();
+        x.style.transition=SETTLE;
+        x.style.transform='';
+      });
+    }
+    item.style.transform='';
+    item.style.transform='translateY('+(top-item.getBoundingClientRect().top)+'px)';
+  };
+
+  const onEnd=event=>{
+    if(!drag||event.pointerId!==drag.pointerId)return;
+    const {item,moved}=drag;
+    document.removeEventListener('pointermove',onMove);
+    document.removeEventListener('pointerup',onEnd);
+    document.removeEventListener('pointercancel',onEnd);
+    document.body.classList.remove('is-bookmark-dragging');
+    // 놓은 자리(새 위치)로 부드럽게 안착
+    item.classList.remove('is-dragging');
+    item.classList.add('is-settling');
+    item.style.transition=SETTLE;
+    item.style.transform='';
+    setTimeout(()=>{
+      item.classList.remove('is-settling');
+      listItems().forEach(x=>{x.style.transition='';x.style.transform=''});
+    },230);
+    justDragged=moved;
+    drag=null;
+    // 클릭이 발생하지 않는 경우를 대비해 플래그 초기화
+    setTimeout(()=>{justDragged=false},0);
+  };
+
   bookmarkNav.addEventListener('pointerdown',event=>{
     const handle=event.target.closest('.arrow');
     if(!handle||event.button!==0)return;
     event.preventDefault();
     const item=handle.closest('a');
-    drag={item,handle,pointerId:event.pointerId,moved:false};
-    handle.setPointerCapture(event.pointerId);
+    const items=listItems();
+    const rect=item.getBoundingClientRect();
+    drag={item,pointerId:event.pointerId,moved:false,startY:event.clientY,startTop:rect.top,height:rect.height,listTop:items[0].getBoundingClientRect().top,count:items.length};
+    items.forEach(x=>{x.style.transition='none'});
     item.classList.add('is-dragging');
+    document.body.classList.add('is-bookmark-dragging');
+    // 항목이 이동(DOM 재배치)해도 끊기지 않도록 document 에서 마우스 움직임을 받는다
+    document.addEventListener('pointermove',onMove);
+    document.addEventListener('pointerup',onEnd);
+    document.addEventListener('pointercancel',onEnd);
   });
-  bookmarkNav.addEventListener('pointermove',event=>{
-    if(!drag||event.pointerId!==drag.pointerId)return;
-    drag.moved=true;
-    const items=[...bookmarkNav.querySelectorAll('a')];
-    for(const other of items){
-      if(other===drag.item)continue;
-      const box=other.getBoundingClientRect();
-      if(event.clientY<box.top||event.clientY>box.bottom)continue;
-      const after=event.clientY>box.top+box.height/2;
-      const movingDown=items.indexOf(drag.item)<items.indexOf(other);
-      if(movingDown&&after)other.after(drag.item);
-      else if(!movingDown&&!after)other.before(drag.item);
-      break;
-    }
-  });
-  const endDrag=event=>{
-    if(!drag||event.pointerId!==drag.pointerId)return;
-    drag.item.classList.remove('is-dragging');
-    if(drag.handle.hasPointerCapture(event.pointerId))drag.handle.releasePointerCapture(event.pointerId);
-    justDragged=drag.moved;
-    drag=null;
-    // 클릭이 발생하지 않는 경우를 대비해 플래그 초기화
-    setTimeout(()=>{justDragged=false},0);
-  };
-  bookmarkNav.addEventListener('pointerup',endDrag);
-  bookmarkNav.addEventListener('pointercancel',endDrag);
 }
 };

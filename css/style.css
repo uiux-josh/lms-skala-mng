@@ -52,7 +52,9 @@ button,input,select { font-family:inherit; }
 .bookmark-nav .arrow { justify-self:end; cursor:grab; touch-action:none; }
 .bookmark-nav .bookmark-remove { cursor:pointer; }
 .bookmark-nav a { user-select:none; }
-.bookmark-nav a.is-dragging { background:#f5f5f5; box-shadow:0 2px 6px rgba(0,0,0,.18); }
+.bookmark-nav a { position:relative; }
+.bookmark-nav a.is-dragging { z-index:3; background:#f5f5f5; box-shadow:0 4px 10px rgba(0,0,0,.2); }
+.bookmark-nav a.is-settling { z-index:2; }
 .bookmark-nav a.is-dragging .arrow { cursor:grabbing; }
 [data-sidebar-panel][hidden] { display:none; }
 .sidebar-rail { position:absolute; top:384px; right:-24px; display:flex; flex-direction:column; align-items:center; width:24px; height:78px; padding:6px 4px 8px; border:0; border-radius:0 4px 4px 0; color:#fff; background:var(--blue); font-size:12px; font-weight:500; line-height:12px; }
@@ -310,3 +312,7 @@ select.ctl.is-selected { color:var(--gray-900); }
 .table--fixed thead th { height:60px; }
 .table--teachers { min-width:600px; }
 .split-table:has(.table-scroll.is-scroll) .table--fixed tbody tr:last-child td { border-bottom:1px solid #ddd; }
+
+/* 즐겨찾기 드래그 중: 텍스트 선택 방지, 커서 유지 */
+body.is-bookmark-dragging { cursor:grabbing; user-select:none; -webkit-user-select:none; }
+.bookmark-nav img { -webkit-user-drag:none; user-select:none; }
