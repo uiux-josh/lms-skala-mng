@@ -58,6 +58,33 @@ document.querySelectorAll('.table-scroll').forEach(box=>{
   if(window.ResizeObserver)new ResizeObserver(update).observe(box);else window.addEventListener('resize',update);
 });
 
+/* 표 정렬: 정렬 아이콘(.th-sort) 클릭 시 내림차순(위쪽 화살표) <-> 오름차순(아래쪽 화살표) */
+document.querySelectorAll('table').forEach(table=>{
+  const buttons=[...table.querySelectorAll('.th-sort')];
+  if(!buttons.length)return;
+  const icons={asc:'images/icons/icon-sort.svg',desc:'images/icons/icon-sort-up.svg'};
+  const cellText=(row,index)=>row.children[index].textContent.trim();
+  buttons.forEach(button=>button.addEventListener('click',()=>{
+    const th=button.closest('th');
+    const index=th.cellIndex;
+    const dir=button.dataset.dir==='desc'?'asc':'desc';
+    // 다른 열의 정렬 표시는 초기화
+    buttons.forEach(other=>{
+      other.dataset.dir='';
+      other.querySelector('img').setAttribute('src',icons.asc);
+      other.closest('th').setAttribute('aria-sort','none');
+    });
+    button.dataset.dir=dir;
+    button.querySelector('img').setAttribute('src',icons[dir]);
+    th.setAttribute('aria-sort',dir==='desc'?'descending':'ascending');
+    const body=table.tBodies[0];
+    const rows=[...body.rows];
+    const numeric=rows.every(row=>cellText(row,index)!==''&&!isNaN(Number(cellText(row,index))));
+    const compare=(a,b)=>numeric?Number(cellText(a,index))-Number(cellText(b,index)):cellText(a,index).localeCompare(cellText(b,index),'ko');
+    rows.sort((a,b)=>dir==='desc'?compare(b,a):compare(a,b)).forEach(row=>body.append(row));
+  }));
+});
+
 /* 선택 버튼 그룹(radio-group): 선택된 항목 표시 */
 document.querySelectorAll('.radio-group').forEach(group=>{
   group.addEventListener('change',()=>{

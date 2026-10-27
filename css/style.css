@@ -256,7 +256,7 @@ select.ctl.is-selected { color:var(--gray-900); }
 .result-panel--title .result-top h2 { color:#2d2d2d; line-height:21px; }
 .result-panel--title .result-top .result-title { color:#2d2d2d; font-size:16px; font-weight:600; }
 .result-panel--title .result-top .result-count { color:#2d2d2d; font-size:10px; font-weight:400; }
-.th-sort { display:inline-flex; align-items:center; justify-content:center; }
+.th-sort { display:inline-flex; align-items:center; justify-content:center; padding:0; color:inherit; font:inherit; cursor:pointer; }
 .th-sort img { width:24px; height:24px; }
 .table-bottom--24 { height:24px; }
 .table-bottom--24 > select { height:24px; padding-left:8px; }
