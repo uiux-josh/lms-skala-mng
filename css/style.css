@@ -316,3 +316,15 @@ select.ctl.is-selected { color:var(--gray-900); }
 /* 즐겨찾기 드래그 중: 텍스트 선택 방지, 커서 유지 */
 body.is-bookmark-dragging { cursor:grabbing; user-select:none; -webkit-user-select:none; }
 .bookmark-nav img { -webkit-user-drag:none; user-select:none; }
+
+/* GNB 2차 메뉴 레이어: 3차 메뉴 기본 펼침, 위쪽 화살표로 접기/펼치기 */
+.lnb-dropdown li { position:relative; }
+.lnb-dropdown .has-sub > a { padding-right:32px; }
+.lnb-toggle { position:absolute; top:8px; right:8px; display:flex; width:16px; height:16px; }
+.lnb-toggle img { transition:transform .2s ease; }
+.has-sub.is-collapsed .lnb-toggle img { transform:rotate(180deg); }
+.lnb-sub { display:grid; grid-template-rows:1fr; transition:grid-template-rows .2s ease,visibility 0s; }
+.lnb-sub > ul { min-height:0; overflow:hidden; }
+.has-sub.is-collapsed .lnb-sub { grid-template-rows:0fr; visibility:hidden; transition:grid-template-rows .2s ease,visibility 0s linear .2s; }
+.lnb-sub a { justify-content:flex-start; gap:2px; color:#666; }
+.lnb-sub a:hover { color:var(--blue); }

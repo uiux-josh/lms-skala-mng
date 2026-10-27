@@ -22,6 +22,17 @@ if(sideNav){
   }));
 }
 
+/* GNB 2차 메뉴 레이어: 위쪽 화살표 클릭 시 3차 메뉴 접기/펼치기 */
+document.querySelectorAll('.lnb-toggle').forEach(button=>button.addEventListener('click',event=>{
+  event.preventDefault();
+  event.stopPropagation();
+  const item=button.closest('.has-sub');
+  const collapsed=item.classList.toggle('is-collapsed');
+  const name=item.querySelector(':scope > a').textContent.trim();
+  button.setAttribute('aria-expanded',String(!collapsed));
+  button.setAttribute('aria-label',name+(collapsed?' 하위 메뉴 펼치기':' 하위 메뉴 접기'));
+}));
+
 /* 전체메뉴 레이어팝업: 그리드 아이콘 클릭으로 열고, 닫기 버튼 / 배경 클릭 / ESC 로 닫기 */
 const allMenu=document.getElementById('allMenu');
 const allMenuOpen=document.getElementById('allMenuOpen');
